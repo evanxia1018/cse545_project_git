@@ -1,0 +1,28 @@
+#include <stdio.h> 
+#include <stdlib.h>
+main() 
+{ 
+	test_printf();
+}
+
+test_printf(){
+	printf("Here is a normal string\n");
+	printf("%s","Here is a normal format string\n");
+	printf("%n\n");
+	printf("%n%n\n");
+	printf("%n%n%n\n");
+	printf("%n%n%n%n\n");
+	printf("%n%n%n%n%n\n");
+	printf("Here is one n%n\n");
+	printf("Here is two n's %n%n\n");
+	printf("Here is a bunch of n's%n%n%n%n%n%n%n%n\n"); 
+	printf("Here is a bunch of s's%s%s%s%s%s%s%s%s\n"); 
+	//printf("%s\n","what now");// why only trigger one type? Try implement other cousins
+	//printf("%n");	
+	//printf("%n%n");
+	//printf("%n%n%n");
+}
+
+
+
+
