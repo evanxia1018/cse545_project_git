@@ -31,6 +31,8 @@ def contains_vul(line):
         print('Format string  vulnerability at :'+line)
     elif 'sprintf' in line:
         print('format string vulnerability at :'+line)
+    elif 'snprintf' in line:
+        print('Command injection or format string at :' +line)
     elif 'fprintf' in line:
         print('Format string vulnerability at' +line)
     elif '__stack_chk_fail' in line:
