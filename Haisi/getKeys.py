@@ -2,7 +2,7 @@
 
 from ictf import iCTF
 
-i = iCTF("http://35.167.152.77/")
+i = iCTF("http://35.160.215.67/")
 t = i.login("evanxia1018@gmail.com","B3Uy3rYgqza8")
 
 key_info = t.get_ssh_keys()
