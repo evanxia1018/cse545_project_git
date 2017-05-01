@@ -1,0 +1,4 @@
+Dot Dot Attack
+Website: https://www.cyberciti.biz/faq/unix-linux-chroot-command-examples-usage-syntax/
++ chroot /path/to/new/root /path/to/server
+	This will on allow acess tot he specified root(/path/to/new/root).
