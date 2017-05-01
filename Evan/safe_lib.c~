@@ -9,6 +9,7 @@
 typeof(printf) *old_printf;
 typeof(fprintf) *old_fprintf;
 typeof(sprintf) *old_sprintf;
+typeof(snprintf) *old_snprintf;
 int printf(const char *format,...)//Still vulnerable to a bunch of other format string such as %s. REMEMBER to remove degugging comment before deployment.
 {
 	// get a pointer to the function "printf"
@@ -66,6 +67,7 @@ int fprintf(FILE *stream, const char *format, ...){
 		free(parg);
 	} 
 	else (*old_fprintf)(stderr,"ERROR: User input contains prohibited characters.\n");
+
 }
 int sprintf(char *str, const char *format, ...){
 	// get a pointer to the function "sprintf"
@@ -97,7 +99,35 @@ int sprintf(char *str, const char *format, ...){
 	else (*old_fprintf)(stderr,"ERROR: User input contains prohibited characters.\n");
 }
 
-
+int snprintf(char *str, size_t size, const char *format, ...){
+	// get a pointer to the function "sprintf"
+        old_snprintf = dlsym(RTLD_NEXT, "snprintf");
+	old_fprintf = dlsym(RTLD_NEXT, "fprintf");
+	(*old_snprintf)(str, "You are now doing safe_snprintf: ");// for demo and debug purpose
+	va_list list;
+        char *parg;
+        /*
+                SANITIZE INPUT
+        */
+	
+	if((checkinput(format,"%n")+
+		checkinput(format,"%hhn") +
+		checkinput(format,"%hn") +
+		checkinput(format,"%ln") +
+		checkinput(format,"%lln") +
+		checkinput(format,"%Ln") +
+		checkinput(format,"%zn") +
+		checkinput(format,"%jn") +
+		checkinput(format,"%tn")) == 0){
+		// format variable arguments
+		va_start(list, format);
+		vasprintf(&parg, format, list);
+		va_end(list);
+		(*old_snprintf)(str,size,"%s",parg); // and we call the function with previous arguments
+		free(parg);
+	} 
+	else (*old_fprintf)(stderr,"ERROR: User input contains prohibited characters.\n");
+}
 
 
 int checkinput(char* input,char* forbidden){

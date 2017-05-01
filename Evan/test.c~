@@ -16,12 +16,6 @@ test_printf(){
 }
 
 test_fprintf(){
-	FILE * fp;
-	fp = fopen ("file.txt", "w+");
-   	fprintf(fp, "%s %s %s %d %n", "We", "are", "in", 2012);
-   	fclose(fp);
-   
-   return(0);
 	fprintf("This is a normal string\n");
 	fprintf("%s","This is a normal format string\n");
 	fprintf("This is an evil string with one devil%n");

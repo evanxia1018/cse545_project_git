@@ -7,7 +7,7 @@ main()
 
 test_printf(){
 	printf("Here is a normal string\n");
-	printf("%n","Here is a normal format string\n");
+	printf("%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n","Here is a normal format string\n");
 	printf("%n\n");
 	printf("%n%n\n");
 	printf("%n%n%n\n");

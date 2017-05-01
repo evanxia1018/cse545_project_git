@@ -13,7 +13,7 @@ int printf(const char *format,...)//Still vulnerable to a bunch of other format 
 {
 	// get a pointer to the function "printf"
         old_printf = dlsym(RTLD_NEXT, "printf");
-	(*old_printf)("You are now doing safe_printf: ");// for demo and debug purpose
+	(*old_printf)("You are now doing safe_printf: \n");// for demo and debug purpose
 	va_list list;
         char *parg;
         /*
@@ -42,7 +42,7 @@ int printf(const char *format,...)//Still vulnerable to a bunch of other format 
 int fprintf(FILE *stream, const char *format, ...){
 	// get a pointer to the function "fprintf"
         old_fprintf = dlsym(RTLD_NEXT, "fprintf");
-	(*old_fprintf)(stream, "You are now doing safe_fprintf: ");// for demo and debug purpose
+	(*old_fprintf)(stream, "You are now doing safe_fprintf: \n");// for demo and debug purpose
 	va_list list;
         char *parg;
         /*
@@ -71,7 +71,7 @@ int sprintf(char *str, const char *format, ...){
 	// get a pointer to the function "sprintf"
         old_sprintf = dlsym(RTLD_NEXT, "sprintf");
 	old_fprintf = dlsym(RTLD_NEXT, "fprintf");
-	(*old_sprintf)(str, "You are now doing safe_sprintf: ");// for demo and debug purpose
+	(*old_sprintf)(str, "You are now doing safe_sprintf: \n");// for demo and debug purpose
 	va_list list;
         char *parg;
         /*
@@ -105,6 +105,25 @@ int checkinput(char* input,char* forbidden){
 	return 0;
 }
 
+
+// Function: strncpy
+// This function makes strncpy copy more safe by inputing a '\0' at the end.
+char *strncpy(char *dest, const char *src, size_t n)
+{
+    char *ret = dest;
+    do {
+        if (!n--)
+	{
+		*dest--;
+		*dest = '\0';
+		return ret;
+	}
+    } while (*dest++ = *src++);
+    while (n--)
+        *dest++ = '\0';
+    
+    return ret;
+}
 
 
 
