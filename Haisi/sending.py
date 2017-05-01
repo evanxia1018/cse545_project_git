@@ -59,7 +59,7 @@ for l in t.get_service_list():
                     print got
                     m = re.search(r'(FLG\w+)', got)
                     if m:
-                        print m.group(1)
+                        print "Captured FLAG: " + m.group(1)
                         print "Submitting: ",
                         print t.submit_flag([m.group(1)])
                         flagfound = True
