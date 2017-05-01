@@ -22,7 +22,7 @@ while True:
     flagid = ""
     port = ""
     new = ''
-    
+
     for l in t.get_service_list():
         print "=========="
         for k, v in l.iteritems():
@@ -60,7 +60,7 @@ while True:
                         print got
                         m = re.search(r'(FLG\w+)', got)
                         if m:
-                            print m.group(1)
+                            print "Captured FLAG: " + m.group(1)
                             print "Submitting: ",
                             print t.submit_flag([m.group(1)])
                             flagfound = True
