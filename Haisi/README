@@ -1,0 +1,51 @@
+#######
+The scripts in this directory are created by Haisi Yi (yihaisi@gmail.com)
+#######
+
+
+
+#######
+AD.txt
+
+This is the Ammo_Depot file.
+Each line in this file presents a string which will be sent out for attacking.
+The <<<>>> part in a string represent the postion that will be replaced by the flag_id.
+#######
+
+
+#######
+sending.py
+sendingLOOP.py
+sendingHTTP.py
+
+The sending scripts are the Rocket_Launcher.
+Usage: run them with python2 interpreter.
+The sending.py is for one-time attacking
+The sendingLOOP.py is for keeping attacking in each tick
+The sendingHTTP.py is for sending HTTP request (need more work)
+#######
+
+
+#######
+getKeys.py
+
+This is for getting the keys and login info of our VM.
+#######
+
+
+#######
+login_ctf.sh
+login_root.sh
+
+These two scripts are for logging into our VM.
+#######
+
+
+#######
+sc.pl
+
+The shellcode generator.
+Usage: perl sc.pl XXX
+XXX represents the command you want to execute by this shellcode
+Example: perl sc.pl /bin/sh
+#######
